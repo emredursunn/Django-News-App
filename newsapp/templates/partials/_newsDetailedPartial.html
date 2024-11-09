@@ -1,0 +1,10 @@
+{% load static %}
+<div class="container mt-5">
+  <div class="card">
+    <img src="{{ news.image.url }}" alt="{{ news.title }}" style="max-height: 400px; max-width: 400px; object-fit: fill;">
+    <div class="card-body">
+      <h2 class="card-title">{{ news.title }}</h2>
+      <p class="card-text">{{ news.description|safe }}</p>
+    </div>
+  </div>
+</div>

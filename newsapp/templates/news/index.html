@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block customcss %}
+    <link rel="stylesheet" href="{% static 'css/news.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="row gap-3">
+{% for news in data %}
+    {% include 'partials/_NewsPartial.html' %}
+{% endfor %}
+
+</div>
+{% endblock %}

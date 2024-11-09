@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block customcss %}
+    <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-md align-items-center justify-content-center gap-3">
+    {% if validation_error %}
+        <div class="alert alert-danger">
+        {{ validation_error }}
+        </div>
+    {% endif %}
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <div class="row mb-3">
+            <div class="col">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="{{ form.username.value|default:""}}" required>
+                 {% if form.username.errors %}
+                    <div class="invalid-feedback">
+                        {{ form.username.errors.0 }}
+                    </div>
+                 {% endif %}
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="{{ form.password.value|default:"" }}" required>
+                 {% if form.password.errors %}
+                    <div class="invalid-feedback">
+                        {{ form.password.errors.0 }}
+                    </div>
+                 {% endif %}
+            </div>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Login">
+    </form>
+</div>
+{% endblock %}
